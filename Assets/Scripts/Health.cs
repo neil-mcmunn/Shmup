@@ -36,8 +36,9 @@ public class Health : MonoBehaviour {
 	}
 
 	void Die(){
-		Instantiate(deathParticles, gameObject.transform.position, gameObject.transform.rotation);
-		//Destroy containing gameObject
+		if (deathParticles != null) {
+			Instantiate (deathParticles, gameObject.transform.position, gameObject.transform.rotation);
+		}
 		Destroy(gameObject);
 	}
 }
