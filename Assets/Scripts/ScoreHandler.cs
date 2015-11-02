@@ -21,7 +21,7 @@ public class ScoreHandler : MonoBehaviour {
 	void updateScoreDisplay (int points){
 		if(scoreDisplay != null){
 			Text display = scoreDisplay.GetComponent<Text>();
-			display.text = ("SCORE - " + totalPoints);
+			display.text = ("SCORE - " + totalPoints.ToString("000,000,000,000"));
 		}
 	}
 
