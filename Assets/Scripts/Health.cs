@@ -5,10 +5,11 @@ public class Health : MonoBehaviour {
 	public bool isEnemy = true;
 	public int health = 1;
 	public GameObject deathParticles;
+	private EnemyScore score;
 
 	// Use this for initialization
 	void Start () {
-		//deathParticles = Resources.Load<GameObject>("Lazy_Explosion");
+		score = GetComponent<EnemyScore>();
 	}
 	
 	// Update is called once per frame
@@ -37,7 +38,10 @@ public class Health : MonoBehaviour {
 
 	void Die(){
 		if (deathParticles != null) {
-			Instantiate (deathParticles, gameObject.transform.position, gameObject.transform.rotation);
+			Instantiate (deathParticles, this.gameObject.transform.position, this.gameObject.transform.rotation);
+		}
+		if (score != null) {
+			score.givePoints();
 		}
 		Destroy(gameObject);
 	}

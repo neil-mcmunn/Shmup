@@ -5,12 +5,12 @@ public class BulletBehavior : MonoBehaviour {
 	public float speed = 1f;
 	public int damage = 1;
 	public bool isEnemy = false;
-	private float trans;
+	public GameObject deathParticles;
 	private float lifespan;
 
 	// Use this for initialization
 	void Start () {
-		lifespan = 20f;
+		lifespan = 10f;
 	}
 	
 	// Update is called once per frame
@@ -20,13 +20,15 @@ public class BulletBehavior : MonoBehaviour {
 			Die();
 		}
 
-		trans = Time.deltaTime * speed;
+		float trans = Time.deltaTime * speed;
 		transform.Translate(trans,0f,0f);
 	}
 
 	//Called by objects that have collided with this bullet
 	public void Die(){
-		//Spawn particle effects
+		if (deathParticles != null) {
+			Instantiate (deathParticles, gameObject.transform.position, gameObject.transform.rotation);
+		}
 		Destroy (gameObject);
 	}
 }
